@@ -139,5 +139,37 @@ Humanoid.prototype.greet = function() {
 
   // Stretch task: 
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
-  // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
+  // * Give the Hero and Villains different methods that could be used to remove health points from objects 
+  //   which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+
+  //Hero Constructor function
+  function Hero(holy) {
+    CharacterStats.call(this, holy);
+    this.shieldBash = holy.shieldBash;
+    this.healOther = holy.healOther;
+  }
+  Hero.prototype = Object.create(CharacterStats.prototype);
+  Hero.prototype.heal = function(target) {
+    return `${this.name} heals ${mage.name} with ${this.healOther}`;
+  };
+
+  const paladin = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 10,
+    name: 'Alastad',
+    team: 'Forest Kingdom',
+    weapons: [
+      'Bow',
+      'Dagger',
+    ],
+    language: 'Elvish',
+    healOther: 'holy light',
+  })
+  console.log(paladin.heal(mage));
