@@ -15,12 +15,12 @@
   * dimensions (These represent the character's size in the video game)
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
-function GameObject(attributes){
+function GameObject(attributes) {
   this.createdAt = attributes.createdAt;
   this.name = attributes.name;
   this.dimensions = attributes.dimensions;
 }
-GameObject.prototype.destroy = function(){
+GameObject.prototype.destroy = function() {
   return `${this.name} was removed from the game.`;
 };
 
@@ -32,12 +32,12 @@ GameObject.prototype.destroy = function(){
   * should inherit destroy() from GameObject's prototype
 */
 
-function CharacterStats(stats){
+function CharacterStats(stats) {
   GameObject.call(this, stats);
   this.healthPoints = stats.healthPoints;
 }
 CharacterStats.prototype = Object.create(GameObject.prototype);
-  CharacterStats.prototype.takeDamage = function(){
+  CharacterStats.prototype.takeDamage = function() {
     return `${this.name} took damage.`;
 };
 
@@ -52,15 +52,14 @@ CharacterStats.prototype = Object.create(GameObject.prototype);
   * should inherit takeDamage() from CharacterStats
 */
  
-function Humanoid(character){
-  GameObject.call(this, character);
+function Humanoid(character) {
+  CharacterStats.call(this, character);
   this.team = character.team;
   this.weapons = character.weapons;
   this.language = character.language;
 }
 Humanoid.prototype = Object.create(CharacterStats.prototype);
-
-Humanoid.prototype.greet = function(){
+Humanoid.prototype.greet = function() {
   return `${this.name} offers a greeting in ${this.language}`;
 };
 
